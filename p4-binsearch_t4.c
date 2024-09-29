@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 int location(int S[], int low, int high, int x);
 void ordenar_insercion(int arreglo[], int tam);
@@ -27,7 +28,11 @@ void menu() {
     printf("Introduce un dato(Tiene que estar en el arreglo) :\n");
     scanf("%d", &x);
     rest = location(arr,0,49,x);
-    printf("Posicion : %d \n", rest+1);
+    if(rest != -1) {
+        printf("Posicion : %d \n", rest+1);
+    } else {
+        printf("Dato no encontrado\n");
+    }
 }
 
 void ordenar_insercion(int arreglo[], int tam)
@@ -51,17 +56,22 @@ void intercambia(int *a, int *b)
 }
 
 int location(int S[], int low, int high, int x) { 
-   int mid, mid1, mid2;
-   if (low > high) { 
-      return -1; 
-   } 
-      mid = (low + high) / 2; 
-   if (x == S[mid]) { 
-      return mid; 
-   } 
-   if (x < S[mid]) { 
-      return location(S, low, mid - 1, x); 
-   } 
-   return location(S, mid + 1, high, x); 
+    int mid, mid1; //Indicadores de los tercios
+    if (low > high) { // caso base
+      return -1; //No lo encontro
+    }  
+    mid = floor(low + (high - low) / 3); //Indicador 1er tercio.
+    mid1 = floor(high - (high - low) / 3); //Indicador 2do tercio.
+    if (x == S[mid]) {  // Comprobacion justo en la 1ra. division.
+        return mid; //Regresa posición
+    }
+    if(x == S[mid1]) { //Comprobacion justo en la 2da. division.
+        return mid1; // Regresa posición
+    } if (x < S[mid]) {  // Buscado menor al 1er. indicador.
+      return location(S, low, mid - 1, x); //Llamada al 1er. tercio.
+    } else if (x>S[mid] && x<S[mid1]) { //Buscado mayor al 1er. y menor al 2do. indicadores.
+        return location(S, mid+1, mid1-1, x); //Llamada al 2do. tercio.
+    } 
+    return location(S, mid1 + 1, high, x); //Llamada al 3er. tercio.
 }
 
