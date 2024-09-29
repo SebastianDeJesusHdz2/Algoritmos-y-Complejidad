@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <math.h>
 
 int location(int S[], int low, int high, int x);
 void ordenar_insercion(int arreglo[], int tam);
@@ -31,17 +30,6 @@ void menu() {
     printf("Posicion : %d \n", rest+1);
 }
 
-int location(int S[], int low, int high, int x) {
-    int mid = floor((low + high) / 2); //Establece la mitad.
-    if (x == S[mid]) { //verifica si el buscado esta en la mitad.
-        return mid; // regresa posicion del buscado.
-    }
-    if (x < S[mid]) { //si el buscado es menor al elemento en la mitad.
-        return location(S, low, mid - 1, x); //busca en el subarreglo izq.
-    }
-    return location(S, mid + 1, high, x); // busca en el subarreglo der.
-}
-
 void ordenar_insercion(int arreglo[], int tam)
 {
     for(int i=1;i<tam;i++)
@@ -62,12 +50,12 @@ void intercambia(int *a, int *b)
     *b = tmp;
 }
 
-int location2(int S[], int low, int high, int x) { 
-   int mid; 
+int location(int S[], int low, int high, int x) { 
+   int mid, mid1, mid2;
    if (low > high) { 
       return -1; 
    } 
-      mid = floor((low + high) / 2); 
+      mid = (low + high) / 2; 
    if (x == S[mid]) { 
       return mid; 
    } 
