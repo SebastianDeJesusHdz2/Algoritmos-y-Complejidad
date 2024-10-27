@@ -17,14 +17,15 @@ void main(){
 void menu() {
     clock_t t_ini, t_end;
     double t_elapsed;
-    int n = 4;
-    int W[4][4] = {
-        {0, 20, 42, 35},
-        {20, 0, 30, 34},
-        {42, 30, 0, 12},
-        {35, 34, 12, 0}
+    int n = 5;
+    int W[5][5] = {
+        {0, 12, 10, 19, 8},
+        {12, 0, 3, 7, 2},
+        {10, 3, 0, 6, 20},
+        {19, 7, 6, 0, 4},
+        {8, 2, 20, 4, 0}
     };
-    int P[4][1 << (4 - 1)] = {{0}};
+    int P[5][1 << (5 - 1)] = {{0}};
     int minlength;
     imprimeMatrizInicial(n, W);
     //t-inicial
