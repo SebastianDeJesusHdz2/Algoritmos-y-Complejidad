@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #define INF 99999
-#define V 7  // Número de vértices
+#define V 5  // Número de vértices
 
 void printSolution(int dist[V][V], int next[V][V]) {
     printf("Distancia más corta entre cada par de nodos:\n");
@@ -66,13 +66,11 @@ int main() {
             |         |
            (2)---2---(3)
     */
-    int graph[V][V] = {{0,4,INF,INF,INF,10,INF},
-                       {3,0,INF,18,INF,INF,INF},
-                       {INF,6,0,INF,INF,INF,INF},
-                       {INF,5,15,0,2,19,5},
-                       {INF,INF,12,1,0,INF,INF},
-                       {INF,INF,INF,INF,INF,0,10},
-                       {INF,INF,INF,8,INF,INF,0}};
+    int graph[V][V] = {{0,1,INF,1,5},
+                       {9,0,3,2,INF},
+                       {INF,INF,0,4,INF},
+                       {INF,INF,2,0,3},
+                       {3,INF,INF,INF,0}};
 
     floydWarshall(graph);
     return 0;
