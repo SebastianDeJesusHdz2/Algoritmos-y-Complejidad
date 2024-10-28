@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <limits.h>
+#include <time.h>
+#include <stdlib.h>
 #include <string.h>
 
 void menu();
@@ -9,10 +12,20 @@ void main() {
 }
 
 void menu() {
+    clock_t t_ini, t_end;
+    double t_elapsed;
     char cadena[100];
     printf("Introduce una cadena: ");
     scanf("%s", cadena);
+    //t-inicial
+    t_ini = clock();
+    //t-inicial
     palindromoMasLargo(cadena);
+    //t-finales
+    t_end = clock() - t_ini;
+    t_elapsed = ((double)t_end)/CLOCKS_PER_SEC;
+    printf("\nTiempo total: %f segs \n", t_elapsed);
+    //t-finales
 }
 
 void palindromoMasLargo(char *cadena) {
